@@ -1,11 +1,12 @@
 import React from 'react';
+
 import '../assets/css/Header.css';
+
 import jopoLogo from '../assets/images/logo/isologo-marron.png';
-import CategoryNavBar from './CategoryNavBar';
+// import CategoryNavBar from './CategoryNavBar';
 
 
 function Header() {
-  console.log ('header');
 
   return (
     <React.Fragment>
@@ -46,8 +47,8 @@ function Header() {
 
       </div>
 
-      <CategoryNavBar />
-
+      {/* <CategoryNavBar />
+ */}
     </React.Fragment>
 
   )

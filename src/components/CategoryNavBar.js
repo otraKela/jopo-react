@@ -1,18 +1,17 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import getCategories from '../services/getCategories.js';
+// import { useState, useEffect } from 'react';
+// import getCategories from '../services/getCategories.js';
 
-function CategoryNavBar() {
+function CategoryNavBar( {categories}) {
 
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    async function readCat() {
-      console.log ('hago el fetch');
-      setCategories(await getCategories());
-    }
-    readCat();
-  }, []);
+  // useEffect(() => {
+  //   async function readCat() {
+  //     setCategories(await getCategories());
+  //   }
+  //   readCat();
+  // }, []);
 
 
   return (

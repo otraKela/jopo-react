@@ -1,16 +1,17 @@
 import React from 'react';
-import CategoryNavBar from './CategoryNavBar';
 
 import '../assets/css/Footer.css';
 
+import CategoryNavBar from './CategoryNavBar';
 
-function Footer() {
-  console.log ('footer');
+
+function Footer({categories}) {
+  
   return (
     <React.Fragment>
       <footer>
         
-        <CategoryNavBar />
+        <CategoryNavBar categories={categories} />
 
         <div id="contact">
           <h3>Contacto</h3>
