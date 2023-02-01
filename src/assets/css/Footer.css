@@ -4,14 +4,14 @@ footer {
   color: var(--footer-text);
   padding: 10px;
   text-align: left;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   margin: 0 30 40px ;
   display: flex;
   justify-content: space-between;
 }
 
 footer h3 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
   margin: 10px 0;
 }
@@ -37,6 +37,9 @@ footer #category-nav-bar li {
 
 }
 
+footer ul li span {
+  margin-left: 10px;
+}
 
 footer #category-nav-bar,
 #contact,
@@ -56,6 +59,7 @@ footer #category-nav-bar :hover,
 .i-fb,
 .i-ig {
   margin-top: 15px;
+  font-size: 20px;
 }
 
 .i-ig {
@@ -76,6 +80,6 @@ footer #category-nav-bar :hover,
 
 #firma {
   font-family: 'Lobster', cursive;
-  font-size: 23px;
+  font-size: 20px;
 }
 
