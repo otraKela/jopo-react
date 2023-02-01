@@ -1,0 +1,10 @@
+:root {
+  --body-background: rgb(255, 255, 255);
+  --footer-text: rgb(255, 255, 255);
+  --footer-background: rgb(58, 58, 58);
+  --icons: rgb(79, 40, 40);
+  --text: rgb(58, 58, 58);
+  --shadow: rgb(123, 123, 123);
+  --borders: rgb(162, 162, 162);
+  --nav-bar-hover: rgb(45, 129, 17);
+}

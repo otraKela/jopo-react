@@ -1,0 +1,143 @@
+#header-top {
+  margin: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  height: 20vh;
+}
+
+#logo {
+  width: 10%;
+}
+
+#logo img {
+  height: 80%;
+  margin-top: 10%;
+}
+
+/* #logo img:hover {
+  animation-name: anim-logo-rotate;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}
+
+@keyframes anim-logo-rotate {
+  50% {
+      width: 35%;
+  }
+  100% {
+      width: 25%;
+      transform: rotate(360deg);
+  }
+} */
+
+
+#search-bar {
+  text-align: center;
+  width: 80%;
+}
+
+#search-bar form {
+  display: flex;
+  /* position: relative; */
+  /* height: 100%; */
+  /* text-align: center; */
+  /* width: 75%; */
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+}
+
+#search-bar form input {
+  width: 75%;
+  height: 30%;
+  margin-right: -40px;
+  border: 1px rgb(162, 162, 162) solid;
+  border-radius: 5px;
+  padding-left: 10px;
+  text-align: left;
+  font-size: 1rem;
+
+
+}
+
+#search-bar button {
+  font-size: 1.5rem;
+  background-color: transparent;
+  color: var(--borders);
+  border: none;
+  height: 30%;
+}
+
+
+#icons {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+
+#icons button {
+  background-color: transparent;
+  border: none;
+  margin: 7px;
+}
+
+#icons button i {
+  color: rgb(79, 40, 40);
+}
+
+.top-right-icons {
+  font-size: 2.2rem;
+}
+
+#shopping-cart-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#shopping-cart-count {
+  width: 1.5rem;
+  height: 1.5rem;
+  text-align: center;
+  padding: 1%;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--text);
+  border: 1px solid var(--icons);
+  border-radius: 50%;
+  background-color: var(--body-background);
+  margin-top: -10px;
+  margin-left: -10px;
+}
+
+#category-nav-bar {
+  padding: 0 30px;
+}
+
+#category-nav-bar ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0;
+}
+
+#category-nav-bar li {
+  list-style: none;
+  /* text-decoration: none; */
+  color: var(--icons);
+  font-weight: bold;
+  font-size: 1.1rem;
+  float: left;
+  box-shadow: none;
+  text-transform: uppercase;
+  transition: all 700ms;
+}
+
+#category-nav-bar li:hover {
+  font-size: 1.25rem;
+  color: var(--nav-bar-hover);
+  box-shadow: var(--shadow);
+}

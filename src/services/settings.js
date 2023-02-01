@@ -1,0 +1,1 @@
+export const CATEGORY_API_URL = 'http://localhost:3040/products/categories';
