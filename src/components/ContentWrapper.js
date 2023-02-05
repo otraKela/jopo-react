@@ -1,13 +1,17 @@
 import React from 'react';
 
-function App() {
+import HomePage from '../pages/HomePage.js';
+
+function ContentWrapper ({allData}) {
+
   return (
     <React.Fragment>
 
+       <HomePage allData={allData}  />
 
     </React.Fragment>
 
   );
 }
 
-export default App;
+export default ContentWrapper;

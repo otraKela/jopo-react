@@ -1,0 +1,26 @@
+#category-menu{
+  display:flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 0 10px;
+}
+
+#category-menu article {
+  width: 28%;
+}
+
+#category-menu article img {
+  width: 100%;
+}
+
+
+.category-name {
+  color: rgb(50, 49, 49);
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-stretch: expanded;
+  text-align: center;
+  padding-top: 5%;
+  margin-bottom: 0;
+}

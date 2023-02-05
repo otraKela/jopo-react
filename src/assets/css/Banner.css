@@ -1,0 +1,8 @@
+.carousel-item {
+  height: 410px;
+}
+
+.carousel-item img {
+    max-height: 410px;
+    object-fit: fill;
+}

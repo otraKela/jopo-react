@@ -1,18 +1,6 @@
 import React from 'react';
-// import { useState, useEffect } from 'react';
-// import getCategories from '../services/getCategories.js';
 
-function CategoryNavBar( {categories}) {
-
-  // const [categories, setCategories] = useState([]);
-
-  // useEffect(() => {
-  //   async function readCat() {
-  //     setCategories(await getCategories());
-  //   }
-  //   readCat();
-  // }, []);
-
+function CategoryNavBar({categories}) {
 
   return (
     <React.Fragment>

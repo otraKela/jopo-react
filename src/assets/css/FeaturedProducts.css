@@ -1,0 +1,10 @@
+#carousel {
+  height: 500px;
+  background-color: rgb(53, 131, 53);
+  margin-top: 20px;
+}
+
+#title {
+  padding: 10px;
+  text-align: center;
+}

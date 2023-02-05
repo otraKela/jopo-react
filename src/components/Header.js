@@ -3,8 +3,6 @@ import React from 'react';
 import '../assets/css/Header.css';
 
 import jopoLogo from '../assets/images/logo/isologo-marron.png';
-// import CategoryNavBar from './CategoryNavBar';
-
 
 function Header() {
 

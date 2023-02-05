@@ -1,9 +1,9 @@
 #header-top {
-  margin: 30px 40px;
+  margin: 20px 40px 25px;
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
-  height: 20vh;
+  height: 15vh;
 }
 
 #logo {
@@ -11,8 +11,7 @@
 }
 
 #logo img {
-  height: 80%;
-  margin-top: 10%;
+  height: 100%;
 }
 
 /* #logo img:hover {
@@ -51,7 +50,7 @@
 
 #search-bar form input {
   width: 75%;
-  height: 30%;
+  height: 25%;
   margin-right: -40px;
   border: 1px rgb(162, 162, 162) solid;
   border-radius: 5px;
@@ -63,11 +62,11 @@
 }
 
 #search-bar button {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   background-color: transparent;
   color: var(--borders);
   border: none;
-  height: 30%;
+  height: 25%;
 }
 
 
@@ -89,7 +88,7 @@
 }
 
 .top-right-icons {
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 
 #shopping-cart-icon {
@@ -115,13 +114,15 @@
 
 #category-nav-bar {
   padding: 0 30px;
+  margin: 0 0 5px;
 }
 
 #category-nav-bar ul {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 0;
+  margin: 0;
 }
 
 #category-nav-bar li {
