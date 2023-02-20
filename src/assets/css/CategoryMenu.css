@@ -1,12 +1,15 @@
 #category-menu{
   display:flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
-  margin: 0 10px;
+  margin: auto;
 }
 
 #category-menu article {
-  width: 28%;
+  width: 30%;
+  padding: 0px 15px;
+  margin: 10px 5px;
+
 }
 
 #category-menu article img {
@@ -24,3 +27,18 @@
   padding-top: 5%;
   margin-bottom: 0;
 }
+
+#showAllProducts {
+  text-align: center;
+  padding: 40px 0 20px;
+}
+
+#showAllProducts button {
+  background-color: var(--alt-background-color);
+  padding: 10px 20px;
+  border: none;
+  margin: auto;
+  color: var(--text);
+  font-size: 1.1rem;
+}
+

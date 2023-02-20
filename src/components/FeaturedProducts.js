@@ -1,54 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import '../assets/css/FeaturedProducts.css';
 
 import FeaturedElement from './FeaturedElement';
 
 
+function FeaturedProducts({ products }) {
 
-function FeaturedProducts ({ products }) {
+  const [featuredProducts, setFeaturedProducts] = useState([]);
 
-  return (
-    <React.Fragment>
-      <div id="carousel">
+  useEffect(() => {
 
-        <h4 id="title">PRODUCTOS DESTACADOS</h4>
+    async function getFeaturedProducts() {
+        let filteredProducts = await products.filter(product => product.featured === 1);
+        setFeaturedProducts(await (filteredProducts));
+      }
 
-        <div id="carouselExample" className="carousel slide">
+    getFeaturedProducts();
 
-          <div className="carousel-inner">
-            {
-              products.map ( (product, index ) => {
-
-                return (
-
-                  <FeaturedElement product={product} key={product.id} />
-
-                )
-              })
-            }
-
-          </div>
+  }, []);
 
 
+  if (featuredProducts.length > 0) {
+    return (
+      <React.Fragment>
+        <div id="featured-products">
 
+          <h4 id="title">DESTACADOS</h4>
 
+          <section id="featured-carousel">
+            <ul className="featured-items">
+              {
+                featuredProducts.map((product, index) => {
+                  return (
+                    <li className="featured-item" key={product.id + index}>
 
-          <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Next</span>
-          </button>
+                      <FeaturedElement product={product} index={index} />
+
+                    </li>
+                  )
+                })
+
+              }
+            </ul>
+          </section>
+
         </div>
-
-      </div>
-
-    </React.Fragment>
-
-  );
+      </React.Fragment >
+    )
+  };
 }
+
 
 export default FeaturedProducts;

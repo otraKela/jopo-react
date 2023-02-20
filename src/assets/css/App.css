@@ -1,7 +1,7 @@
-body {
+.App {
   background-color: var(--body-background);
-  width: 100vw;
+  width: 100%;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
-  color: rgb(58, 58, 58);
+  color: var(--text);
 }

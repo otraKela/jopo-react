@@ -1,0 +1,18 @@
+.notFound{
+  background-color: #e2dbd3;
+      margin: auto;
+      text-align: center;
+  }
+  
+  .notFound img{
+      padding: 40px 0px;
+      }
+      
+  
+  .text-notfound{
+      padding-bottom: 40px;
+  }
+
+  .nav-link {
+      color: var(--link);
+  }

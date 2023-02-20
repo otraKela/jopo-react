@@ -1,11 +1,16 @@
 :root {
   --body-background: rgb(255, 255, 255);
+  --alt-background-color: rgb(240,237,236);
   --footer-text: rgb(255, 255, 255);
   --footer-background: rgb(79, 79, 79);
-  --icons: rgb(67, 28, 8);
+  --icons: rgb(75, 32, 13);
   --text: rgb(58, 58, 58);
   --shadow: rgb(123, 123, 123);
   --borders: rgb(162, 162, 162);
-  --nav-bar-hover: rgb(45, 129, 17);
+  --button: rgb(216, 210, 208);
+  --nav-bar-hover: rgb(176, 153, 0);
   --whatsapp-green: rgb(37, 211, 102);
+  --link: rgb(208, 80, 33);
+  --stress: rgb(208, 80, 33);
+  --strong: rgb(176, 153, 0);
 }

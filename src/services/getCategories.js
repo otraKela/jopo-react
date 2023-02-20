@@ -1,16 +1,9 @@
 import {CATEGORY_API_URL} from './settings';
 
-const returnCategories = response => {
-  return response.data.categories;
- }
- 
-
-function getCategories() {
-
-  return fetch(CATEGORY_API_URL)
-    .then(response => response.json())
-    .then(returnCategories)
-
+async function getCategories () {
+    const response = await fetch(CATEGORY_API_URL);
+    const apiCategories = await response.json();
+    return await apiCategories;
 }
 
 export default getCategories;

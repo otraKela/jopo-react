@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
-import {CATEGORY_API_URL} from '../services/settings';
-import {PRODUCT_API_URL} from '../services/settings';
+import getCategories from '../services/getCategories';
+import getProducts from '../services/getProducts';
 
 import '../assets/css/App.css';
 import '../assets/css/colors.css';
@@ -23,38 +23,21 @@ function App() {
 
   useEffect ( () => {   
 
-    // fetch categories from db 
-      async function getCategories () {
-          const response = await fetch(CATEGORY_API_URL);
-          const apiCategories = await response.json();
-          return await apiCategories;
-      }
+    Promise.all ( [ getCategories(), getProducts() ] )
+    .then ( ( [apiCategories, apiProducts ] ) => {
+        categories = apiCategories.data.categories;
+        products = apiProducts.data.products;
 
-    // fetch products from db 
-      async function getProducts () { 
-          const response = await fetch(PRODUCT_API_URL);
-          const apiProducts = await response.json();
-          return await apiProducts;
-      };
+        const propsData = {
+          categories: categories,
+          products: products, 
+        };
 
-      Promise.all ( [ getCategories(), getProducts() ] )
-        .then ( ( [apiCategories, apiProducts ] ) => {
-            categories = apiCategories.data.categories;
-            products = apiProducts.data.products;
+        setAllData (propsData);
 
-            const propsData = {
-              categories: categories,
-              products: products, 
-            };
-
-            setAllData (propsData);
-
-       })
+    })
   }, [] )   
 
-
-
- 
 
   return (
     <div className="App">

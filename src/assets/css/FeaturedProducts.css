@@ -1,10 +1,129 @@
-#carousel {
-  height: 500px;
-  background-color: rgb(53, 131, 53);
+#featured-products {
+  background-color: var(--alt-background-color);
+  padding-top: 10px;
   margin-top: 20px;
 }
 
-#title {
-  padding: 10px;
+#featured-products h4 {
+    font-size: 1.3rem;
+    color: var(--text);
+    padding: 30px 0 0;
+    margin: 0;
+    text-align: center;
+    letter-spacing: 0.1rem;
+}
+
+#featured-carousel {
+    padding: 20px 20px 0;
+    margin-top: 10px;
+}
+
+.featured-items {
+    display: flex;
+    gap: 8vw;
+    overflow: auto;
+    margin: 10px 10px 30px;
+    
+}
+
+.featured-items::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.featured-items::-webkit-scrollbar-thumb {
+    background: var(--shadow);
+    border-radius: 5px;
+}
+
+.featured-items::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.featured-item {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.featured-item img {
+    width: 40vw;
+    height: 40vw;
+    object-fit: contain;
+}
+
+.featured-item .product-name {
+  height: 2.8rem;
+  overflow: hidden;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  line-height: 1.3rem;
+}
+
+.featured-item  .product-description {
   text-align: center;
+  margin-bottom: 3px;
+}
+
+.featured-item  .price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin:  0 0 10px;
+}
+
+.featured-item  .price-discount {
+    margin: 0 0 10px;
+}
+
+.featured-item .orig-price {
+    font-size: 1.1rem;
+    font-weight: normal;
+    text-decoration: line-through;
+    text-align: left;
+    margin: 0 10px;
+}
+
+.featured-item .final-price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: right;
+    margin: 0 10px;
+}
+
+.featured-item .discount {
+  font-size: 14px;
+}
+
+.featured-item button {
+    text-decoration: none;
+    color: white;
+    letter-spacing: 1px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: #4b200d;
+    padding: 10px 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+@media (min-width:769px) {
+  /* ------------------------------   header ----------------------------------------------*/
+    .featured-items {
+        gap: 5vw;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+}
+        
+    .featured-item img {
+        width: 20vw;
+        height: 20vw;
+    }
+  
+    .featured-item button {
+        width: 80%;
+        font-size: 12px;
+    }
 }

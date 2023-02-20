@@ -1,14 +1,10 @@
 import {PRODUCT_API_URL} from './settings';
 
-const returnProducts = response => {
-  return response.data.products;
-}
+async function getProducts () { 
+  const response = await fetch(PRODUCT_API_URL);
+  const apiProducts = await response.json();
+  return await apiProducts;
+};
 
-function getProducts() {
-
-  return fetch(PRODUCT_API_URL)
-    .then(response => response.json())
-    .then(returnProducts)
-}
 
 export default getProducts;
