@@ -45,6 +45,11 @@
     margin-bottom: 20px;
 }
 
+.featured-item a {
+    color: var(--text);
+    text-decoration: none;
+}
+
 .featured-item img {
     width: 40vw;
     height: 40vw;
@@ -95,12 +100,12 @@
 
 .featured-item button {
     text-decoration: none;
-    color: white;
+    color: var(--body-background);
     letter-spacing: 1px;
     width: 100%;
     border: none;
     border-radius: 5px;
-    background-color: #4b200d;
+    background-color: var(--icons);
     padding: 10px 5px;
     text-transform: uppercase;
     font-weight: bold;

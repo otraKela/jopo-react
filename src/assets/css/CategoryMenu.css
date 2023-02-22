@@ -9,7 +9,10 @@
   width: 30%;
   padding: 0px 15px;
   margin: 10px 5px;
+}
 
+#category-menu article a {
+  text-decoration: none;
 }
 
 #category-menu article img {

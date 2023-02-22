@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function CategoryNavBar({categories}) {
 
@@ -9,7 +10,9 @@ function CategoryNavBar({categories}) {
           {
             categories.map((category, index) => {
               return (
-                <li key={category + index}>{category.name}</li>
+                <Link to={`/productList/${category.id}`} key={category + index}>
+                  <li >{category.name}</li>
+                </Link>
               )
             })
           }

@@ -1,0 +1,167 @@
+#main-product-list {
+  margin-top: 100px;
+}
+
+#category-filter {
+  border-top: var(--icons) solid 2px;
+}
+
+#category-filter {
+  font-size: 20px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+#category-filter p {
+  font-size: 1.1rem;
+  margin: 1.5rem 0 0;
+  text-transform: uppercase;
+}
+
+#category-filter form {
+  margin-bottom: -40px;
+}
+
+.category-selector {
+  font-size: 1.05rem;
+  color: var(--text);
+  width: 40%;
+  height: 28px;
+  margin: 5px;
+  background-color: var(--button);
+  border: solid var(--borders) 1px;
+  border-radius: 3px;
+  text-transform:uppercase;
+}
+
+#products {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 0;
+}
+
+#products article {
+  text-align: center;
+  width: 50%;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+#products article img {
+  width: 90%;
+}
+
+#products article a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+#products .product-name {
+  height: 2.8rem;
+  overflow: hidden;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  line-height: 1.3rem;
+
+}
+
+#products .product-description {
+  text-align: center;
+  margin-bottom: 3px;
+}
+
+#products .price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0 0 10px;
+}
+
+#products .price-discount {
+  margin: 0 0 10px;
+}
+
+
+#products .orig-price {
+  font-size: 1.1rem;
+  font-weight: normal;
+  text-decoration: line-through;
+  text-align: left;
+  margin: 0 10px;
+}
+
+#products .final-price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: right;
+  margin: 0 10px;
+}
+
+#products .discount {
+  font-size: 14px;
+}
+
+#products .installments {
+  margin: 0 0 10px;
+  ;
+}
+
+#products button {
+  text-decoration: none;
+  color: var(--body-background);
+  letter-spacing: 1px;
+  width: 70%;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--icons);
+  padding: 10px 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+.product-not-found {
+  margin: 50px 0;
+  text-align: center;
+}
+
+.product-not-found p {
+  font-size: 1.2rem;
+  color: var(--alert);
+}
+
+.product-not-found a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+
+
+@media (min-width: 480px) {
+
+  #products .product-name {
+    height: 45px;
+    font-size: 18px;
+  }
+
+  .category-selector {
+    width: 30%;
+  }
+}
+
+
+@media (min-width: 769px) {
+
+  .category-selector {
+    width: 15%;
+  }
+
+  #products article {
+    width: 25%;
+  }
+
+}

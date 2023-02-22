@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import '../assets/css/FeaturedProducts.css';
 
-import FeaturedElement from './FeaturedElement';
+import ProductCard from './ProductCard';
 
 
 function FeaturedProducts({ products }) {
@@ -35,7 +35,7 @@ function FeaturedProducts({ products }) {
                   return (
                     <li className="featured-item" key={product.id + index}>
 
-                      <FeaturedElement product={product} index={index} />
+                      <ProductCard product={product} index={index} />
 
                     </li>
                   )

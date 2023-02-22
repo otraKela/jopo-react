@@ -5,11 +5,12 @@ import { Route, Routes } from "react-router-dom";
 
 import HomePage from '../pages/HomePage.js';
 import ProductDetail from '../pages/ProductDetail.js';
+import ProductList from '../pages/ProductList.js';
 import NotFound from '../pages/NotFound.js';
 
 function ContentWrapper ({allData}) {
 
-  const id = 15;
+  // const id = 15;
 
   return (
     <React.Fragment>
@@ -20,13 +21,13 @@ function ContentWrapper ({allData}) {
        <Routes>
 					<Route 
             path="/productDetail/:id" 
-            // loader={({ params }) => {
-            //   console.log(params.teamId); 
-            // }}
-            // action={({ params }) => {}} 
-            element={<ProductDetail id={id} allData={allData.products} />} 
+            element={<ProductDetail products={allData.products} />}
           />
-					<Route 
+          <Route 
+            path="/productList/:category?" 
+            element={<ProductList allData={allData} />}
+          />					
+          <Route 
             exact path="/" 
             element={<HomePage allData={allData} />} 
           />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import '../assets/css/Header.css';
 
@@ -11,8 +12,11 @@ function Header() {
       <div id="header-top">
 
         <div id="logo">
-          <img src={jopoLogo} alt="Logo" />
+          <Link to="/">
+            <img src={jopoLogo} alt="Logo" />
+          </Link>
         </div>
+
 
         <div id="search-bar">
           <form method="post" action="/products/search">
@@ -33,7 +37,7 @@ function Header() {
 
           <button id="shopping-cart-icon">
             <i className="fa-solid fa-cart-shopping top-right-icons">
-              
+
             </i>
 
             <p id="shopping-cart-count">
