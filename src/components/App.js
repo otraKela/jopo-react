@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
+import CategoryContext from '../context/CategoryContext.js';
+
 import getCategories from '../services/getCategories';
 import getProducts from '../services/getProducts';
 
@@ -19,6 +21,7 @@ let products;
 
 function App() {
 
+  const [ categoryFilter, setCategoryFilter ] = useState('');
   const [ allData, setAllData ] = useState('');
 
   useEffect ( () => {   
@@ -42,6 +45,8 @@ function App() {
   return (
     <div className="App">
 
+      <CategoryContext.Provider value={{ categoryFilter, setCategoryFilter }} >
+
         <Header />
 
         { categories && <CategoryNavBar categories={categories} /> }
@@ -49,7 +54,8 @@ function App() {
         { allData && <ContentWrapper allData={allData} /> } 
         
         { categories && <Footer categories={categories} /> }
-      
+
+      </CategoryContext.Provider>
     </div>
   );
 }

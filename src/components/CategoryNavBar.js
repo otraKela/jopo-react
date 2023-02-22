@@ -1,7 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {useContext} from 'react';
+import {NavLink } from 'react-router-dom';
+
+import CategoryContext from '../context/CategoryContext.js';
 
 function CategoryNavBar({categories}) {
+
+  const { categoryFilter, setCategoryFilter } = useContext(CategoryContext);
 
   return (
     <React.Fragment>
@@ -10,9 +14,11 @@ function CategoryNavBar({categories}) {
           {
             categories.map((category, index) => {
               return (
-                <Link to={`/productList/${category.id}`} key={category + index}>
-                  <li >{category.name}</li>
-                </Link>
+                <NavLink to="/productList" key={category.id + index} >
+                  <li onClick={() => setCategoryFilter(category.id)}>
+                    {category.name}
+                  </li>
+                </NavLink>
               )
             })
           }

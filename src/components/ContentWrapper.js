@@ -24,7 +24,8 @@ function ContentWrapper ({allData}) {
             element={<ProductDetail products={allData.products} />}
           />
           <Route 
-            path="/productList/:category?" 
+            // path="/productList/:category?" 
+            path="/productList"
             element={<ProductList allData={allData} />}
           />					
           <Route 

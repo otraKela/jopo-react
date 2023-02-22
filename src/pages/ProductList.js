@@ -1,75 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, {useContext} from 'react';
 
-import '../assets/css/ProductsList.css';
+import CategoryContext from '../context/CategoryContext.js';
 
+import '../assets/css/ProductList.css';
+
+import CategorySelector from '../components/CategorySelector.js';
 import FilteredProductList from '../components/FilteredProductList.js';
 
 function ProductList({ allData }) {
-  const { category } = useParams();
-  const { categories, products: allProducts } = allData;
 
-  const [urlCategory, setUrlCategory] = useState(category); //
-  const [selectedCategory, setSelectedCategory] = useState(category);
-  const [products, setProducts] = useState(allProducts);
+  const { categoryFilter, setCategoryFilter } = useContext(CategoryContext);
 
-  if (!(category === urlCategory)) {setUrlCategory(category)};
-
-  useEffect(() => {
-    setSelectedCategory(urlCategory);
-  },[urlCategory]);
-
-  useEffect(() => {
-    async function getFilteredProducts() {
-      if (selectedCategory && !(selectedCategory==='') ) {  
-        let filteredProducts = await allProducts.filter(product => product.categoryId == selectedCategory);
-        
-        setProducts(await filteredProducts)
-      } else {
-        setProducts(allProducts);
-      }
-    }
-
-    getFilteredProducts();
-  }, [selectedCategory]);
-
+  const { categories, products } = allData;
 
   return (
     <React.Fragment>
-      <div id="category-filter">
 
-        <p>Filtrar por categorías</p>
+      <div id="main-product-list">
 
-        <div name="category-form" >
+        <CategorySelector categories={categories} />
 
-          <select name="category" className="category-selector"
-            value={selectedCategory}
-            onChange={(e) => {
-              setSelectedCategory(e.target.value)
-            }}
-          >
+        <FilteredProductList products={products} />
 
-            <option value="">Todas</option>
-            {
-              categories.map((category, index) => {
-                return (
-                  <option
-                    value={category.id}
-                    key={category.id + index}
-                  >
-                    {category.name}
-                  </option>
-                )
-              })}
-          </select>
-        </div>
       </div>
-
-      {products &&
-        <div id="main-product-list">
-          <FilteredProductList products={products}  />
-        </div>
-      }
     </React.Fragment>
 
   )

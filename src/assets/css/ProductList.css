@@ -1,6 +1,6 @@
-#main-product-list {
+/* #main-product-list {
   margin-top: 100px;
-}
+} */
 
 #category-filter {
   border-top: var(--icons) solid 2px;
@@ -8,7 +8,7 @@
 
 #category-filter {
   font-size: 20px;
-  margin-bottom: 0;
+  margin-bottom: 60px;
   text-align: center;
 }
 
