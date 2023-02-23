@@ -54,6 +54,10 @@ footer ul li span {
   margin-left: 10px;
 }
 
+footer ul a {
+  text-decoration: none
+}
+
 footer #category-nav-bar :hover,
 #contact :hover,
 #social-networks :hover {

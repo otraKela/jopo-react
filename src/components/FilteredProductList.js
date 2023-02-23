@@ -13,7 +13,7 @@ function FilteredProductList({ products: allProducts }) {
   useEffect(() => {
     async function getFilteredProducts() {
       if (categoryFilter && !(categoryFilter === '') ) { 
-        let filteredProducts = await allProducts.filter(product => product.categoryId === categoryFilter);
+        let filteredProducts = await allProducts.filter(product => product.categoryId == categoryFilter);
                 
         setProducts(await filteredProducts)
       } else {
