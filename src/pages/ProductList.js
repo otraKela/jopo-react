@@ -1,6 +1,4 @@
-import React, {useContext} from 'react';
-
-import CategoryContext from '../context/CategoryContext.js';
+import React from 'react';
 
 import '../assets/css/ProductList.css';
 
@@ -8,8 +6,6 @@ import CategorySelector from '../components/CategorySelector.js';
 import FilteredProductList from '../components/FilteredProductList.js';
 
 function ProductList({ allData }) {
-
-  const { categoryFilter, setCategoryFilter } = useContext(CategoryContext);
 
   const { categories, products } = allData;
 

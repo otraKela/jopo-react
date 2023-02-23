@@ -5,7 +5,7 @@ import CategoryContext from '../context/CategoryContext.js';
 
 function CategoryNavBar({categories}) {
 
-  const { categoryFilter, setCategoryFilter } = useContext(CategoryContext);
+  const { setCategoryFilter } = useContext(CategoryContext);
 
   return (
     <React.Fragment>

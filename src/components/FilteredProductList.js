@@ -6,18 +6,15 @@ import ProductCard from './ProductCard.js';
 
 function FilteredProductList({ products: allProducts }) {
 
-  const { categoryFilter, setCategoryFilter } = useContext(CategoryContext);
+  const { categoryFilter } = useContext(CategoryContext);
 
-  const [selectedCategory, setSelectedCategory] = useState(categoryFilter);
   const [products, setProducts] = useState(allProducts);
-
-  if (!(categoryFilter === selectedCategory)) { setSelectedCategory(categoryFilter)}
 
   useEffect(() => {
     async function getFilteredProducts() {
-      if (selectedCategory && !(selectedCategory === '') ) {  
-        let filteredProducts = await allProducts.filter(product => product.categoryId == selectedCategory);
-        
+      if (categoryFilter && !(categoryFilter === '') ) { 
+        let filteredProducts = await allProducts.filter(product => product.categoryId === categoryFilter);
+                
         setProducts(await filteredProducts)
       } else {
         setProducts(allProducts);
@@ -25,8 +22,7 @@ function FilteredProductList({ products: allProducts }) {
     }
 
     getFilteredProducts();
-  }, [selectedCategory]);
-
+}, [categoryFilter]);
 
   return (
     <React.Fragment>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 import CategoryContext from '../context/CategoryContext.js';
+import ShoppingCartContext from '../context/ShoppingCartContext.js';
 
 import getCategories from '../services/getCategories';
 import getProducts from '../services/getProducts';
@@ -23,6 +24,7 @@ function App() {
 
   const [ categoryFilter, setCategoryFilter ] = useState('');
   const [ allData, setAllData ] = useState('');
+  const [ shoppingCart, setShoppingCart ] = useState('');
 
   useEffect ( () => {   
 
@@ -46,6 +48,7 @@ function App() {
     <div className="App">
 
       <CategoryContext.Provider value={{ categoryFilter, setCategoryFilter }} >
+      <ShoppingCartContext.Provider value={{ shoppingCart, setShoppingCart }} >
 
         <Header />
 
@@ -55,6 +58,7 @@ function App() {
         
         { categories && <Footer categories={categories} /> }
 
+      </ShoppingCartContext.Provider>
       </CategoryContext.Provider>
     </div>
   );
