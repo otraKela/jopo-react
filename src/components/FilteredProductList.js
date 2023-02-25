@@ -8,15 +8,22 @@ function FilteredProductList({ products: allProducts }) {
 
   const { categoryFilter } = useContext(CategoryContext);
 
-  const [products, setProducts] = useState(allProducts);
+  const [ products, setProducts ] = useState(allProducts);
+  const [ loading, setLoading ] = useState(false);
+
 
   useEffect(() => {
+
+    setLoading (true);
+
     async function getFilteredProducts() {
       if (categoryFilter && !(categoryFilter === '') ) { 
         let filteredProducts = await allProducts.filter(product => product.categoryId == categoryFilter);
-                
-        setProducts(await filteredProducts)
+  
+        setLoading (false);
+        setProducts(await filteredProducts);
       } else {
+        setLoading (false);
         setProducts(allProducts);
       }
     }
@@ -26,8 +33,15 @@ function FilteredProductList({ products: allProducts }) {
 
   return (
     <React.Fragment>
+
       {products &&
         <div id="product-list">
+
+          {loading &&
+            <div id="loading">
+              <p>Loading...</p>
+            </div>
+          }
 
           <section id="products">
             {

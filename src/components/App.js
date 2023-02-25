@@ -25,8 +25,11 @@ function App() {
   const [ categoryFilter, setCategoryFilter ] = useState('');
   const [ allData, setAllData ] = useState('');
   const [ shoppingCart, setShoppingCart ] = useState('');
+  const [ loading, setLoading ] = useState(false);
 
   useEffect ( () => {   
+
+    setLoading (true);
 
     Promise.all ( [ getCategories(), getProducts() ] )
     .then ( ( [apiCategories, apiProducts ] ) => {
@@ -38,15 +41,15 @@ function App() {
           products: products, 
         };
 
+        setLoading (false);
         setAllData (propsData);
-
     })
   }, [] )   
 
 
   return (
     <div className="App">
-
+      
       <CategoryContext.Provider value={{ categoryFilter, setCategoryFilter }} >
       <ShoppingCartContext.Provider value={{ shoppingCart, setShoppingCart }} >
 
