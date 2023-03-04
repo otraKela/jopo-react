@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import '../assets/css/Header.css';
 
 import jopoLogo from '../assets/images/logo/isologo-marron.png';
 
+import UserDataContext from '../context/UserDataContext.js';
+
 function Header() {
+
+  const { userData, setUserData } = useContext(UserDataContext);
+
+  const logout = () => {
+    setTimeout(() => { setUserData('') }, 5000);
+  };
 
   return (
     <React.Fragment>
@@ -29,29 +37,41 @@ function Header() {
           </form>
         </div>
 
+        <div id="right-header">
+          <div id="hello-user">
+            { userData &&
+              <p>Hola {userData.first_name}!</p>
+            }
+          </div>
+
+
         <div id="icons">
 
-          <button id="user-icon">
+          <Link to="/Login">
             <i className="fa-solid fa-circle-user top-right-icons"></i>
-          </button>
+          </Link>
 
-          <button id="shopping-cart-icon">
-            <i className="fa-solid fa-cart-shopping top-right-icons">
-
-            </i>
+          <Link to="#" id="cart-link">
+            <i className="fa-solid fa-cart-shopping top-right-icons"></i>
 
             <p id="shopping-cart-count">
 
             </p>
+          </Link>
 
-          </button>
+          { userData &&
+          <Link to="/" id="HomePage">
+
+            <i class="fa-solid fa-right-from-bracket top-right-icons" onClick={logout}></i>
+
+          </Link>
+          }
+
         </div>
-
+        </div>
       </div>
 
-      {/* <CategoryNavBar />
- */}
-    </React.Fragment>
+    </React.Fragment >
 
   )
 }

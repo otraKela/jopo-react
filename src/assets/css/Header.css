@@ -7,7 +7,7 @@
 }
 
 #logo {
-  width: 10%;
+  width: 15%;
 }
 
 #logo img {
@@ -33,7 +33,7 @@
 
 #search-bar {
   text-align: center;
-  width: 80%;
+  width: 70%;
 }
 
 #search-bar form {
@@ -57,8 +57,6 @@
   padding-left: 10px;
   text-align: left;
   font-size: 1rem;
-
-
 }
 
 #search-bar button {
@@ -69,26 +67,40 @@
   height: 25%;
 }
 
-
 #icons {
-  width: 10%;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
 
-
-#icons button {
-  background-color: transparent;
+#icons a {
+  text-decoration: none;
   border: none;
-  margin: 7px;
 }
 
-#icons button i {
+#icons a i {
   color: var(--icons);
+  border: none;
+}
+
+#right-header {
+  width: 15%
+}
+
+#hello-user {
+  width: 100%;
+  font-size: 1.2rem;
+  text-align: center;
+  min-height: 40px;
+}
+
+#cart-link {
+  display: flex;
 }
 
 .top-right-icons {
   font-size: 2rem;
+  padding: 0 10px;
 }
 
 #shopping-cart-icon {
@@ -109,7 +121,7 @@
   border-radius: 50%;
   background-color: var(--body-background);
   margin-top: -10px;
-  margin-left: -10px;
+  margin-left: -20px;
 }
 
 #category-nav-bar {
@@ -141,4 +153,3 @@
   font-size: 1.2rem;
   color: var(--nav-bar-hover);
 }
-

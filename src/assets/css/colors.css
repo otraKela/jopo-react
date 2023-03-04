@@ -1,5 +1,5 @@
 :root {
-  --body-background: rgb(255, 255, 255);
+  --body-background: #ffffff;
   --alt-background-color: rgb(240,237,236);
   --footer-text: rgb(255, 255, 255);
   --footer-background: rgb(79, 79, 79);
@@ -9,11 +9,10 @@
   --borders: rgb(162, 162, 162);
   --button: rgb(216, 210, 208);
   --nav-bar-hover: rgb(176, 153, 0);
-  --whatsapp-green: rgb(37, 211, 102);
+  --whatsapp-green: #25d366;
   --link: rgb(208, 80, 33);
   --stress: rgb(208, 80, 33);
   --strong: rgb(176, 153, 0);
   --alert: red;
-  
-
+  --input: rgb(209, 206, 202);
 }
