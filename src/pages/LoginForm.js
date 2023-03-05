@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import validateLogin from '../services/validateLogin.js';
@@ -8,17 +8,34 @@ import UserDataContext from '../context/UserDataContext.js';
 
 import '../assets/css/LoginForm.css';
 
-
 const LoginForm = () => {
+
+  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+
+  const [errorMessage, setErrorMessage] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const { userData, setUserData } = useContext(UserDataContext);
 
   const navigate = useNavigate();
 
+  const editEmail = (newEmail) => {
+    setUserEmail(newEmail);
+    if (!newEmail || newEmail === '' || !(newEmail.includes('@'))) {
+      setEmailError('Debe ingresar una dirección de correo válida');
+      setTimeout(() => setEmailError(''), 1000 * 5);
+    }
+  }
 
-  const [userEmail, setUserEmail] = useState('');
-  const [userPassword, setUserPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const editPassword = (newPassword) => {
+    setUserPassword(newPassword);
+    if (!newPassword || newPassword === '' || newPassword.length < 8) {
+      setPasswordError('Debe ingresar una password válida');
+      setTimeout(() => setPasswordError(''), 1000 * 5);
+    }
+  }
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
@@ -30,39 +47,40 @@ const LoginForm = () => {
 
     const result = await validateLogin(userLoginData);
 
-
     if (result.user) {
-      localStorage.setItem('user', JSON.stringify(result.user))
-      setUserData (result.user);
-      navigate ('/');
+      // localStorage.setItem('user', JSON.stringify(result.user))
+      setUserData(result.user);
+      navigate('/');
 
     } else {
       setErrorMessage(result.meta.msg);
       setTimeout(() => setErrorMessage(''), 1000 * 5);
     }
-
   };
 
   return (
     < div id="login" >
       <div id="login-frame">
 
-        {/* <form action="/users/login" method="POST" className="formulario"> */}
         <form id="login-form" onSubmit={handleLoginSubmit}>
           <input id="message" defaultValue={errorMessage} />
 
           <div className="form-data">
             <label>Email </label>
             <input type="email" name="email" id="email"
-              onChange={({ target }) => { setUserEmail(target.value) }} />
-            <p className="email-error error"></p>
+              placeholder="Ingrese un correo electrónico"
+              onChange={({ target }) => { editEmail(target.value) }}
+              value={userEmail} />
+            <p className="email-error error">{emailError}</p>
           </div>
 
           <div className="form-data">
             <label>Contraseña </label>
             <input type="password" name="password" id="password"
-              onChange={({ target }) => { setUserPassword(target.value) }} />
-            <p className="password-error error"></p>
+              placeholder="Ingrese su password"
+              onChange={({ target }) => { editPassword(target.value) }} 
+              value={userPassword} />
+            <p className="password-error error">{passwordError}</p>
           </div>
 
           <div id="remember-me" >
@@ -87,5 +105,6 @@ const LoginForm = () => {
     </div >
   )
 }
+
 
 export default LoginForm;

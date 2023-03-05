@@ -1,9 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
 
 import '../assets/css/CategoryMenu.css';
 
+import CategoryContext from '../context/CategoryContext.js';
+
 function CategoryMenu({ categories }) {
+
+  const { setCategoryFilter } = useContext(CategoryContext);
+
   return (
     <React.Fragment>
 
@@ -14,7 +19,7 @@ function CategoryMenu({ categories }) {
             return (
 
               <article key={category.id}>
-                <Link to={`/productList/${category.id}`}>
+                <Link to={`/productList`} onClick={() => setCategoryFilter(category.id)} >
                   <p className="category-name">{category.name}</p>
                   <img src={category.img} alt="Category" />
                 </Link>

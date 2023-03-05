@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import '../assets/css/Header.css';
 
@@ -9,10 +9,13 @@ import UserDataContext from '../context/UserDataContext.js';
 
 function Header() {
 
+  const navigate = useNavigate();
+
   const { userData, setUserData } = useContext(UserDataContext);
 
-  const logout = () => {
-    setTimeout(() => { setUserData('') }, 5000);
+  const handleLogout = () => {
+    setUserData('');
+    navigate('/');
   };
 
   return (
@@ -47,9 +50,16 @@ function Header() {
 
         <div id="icons">
 
+          { !userData 
+            ?
           <Link to="/Login">
             <i className="fa-solid fa-circle-user top-right-icons"></i>
           </Link>
+          :
+          <Link to="#">
+            <i className="fa-solid fa-circle-user top-right-icons"></i>
+          </Link>
+          }
 
           <Link to="#" id="cart-link">
             <i className="fa-solid fa-cart-shopping top-right-icons"></i>
@@ -60,11 +70,11 @@ function Header() {
           </Link>
 
           { userData &&
-          <Link to="/" id="HomePage">
-
-            <i class="fa-solid fa-right-from-bracket top-right-icons" onClick={logout}></i>
-
-          </Link>
+          // <Link to="/" id="HomePage">
+            <button onClick={handleLogout} id="logout-button">
+            <i className="fa-solid fa-right-from-bracket top-right-icons"></i>
+            </button>
+          // </Link>
           }
 
         </div>

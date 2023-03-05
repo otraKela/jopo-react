@@ -14,21 +14,20 @@
   height: 100%;
 }
 
-/* #logo img:hover {
+#logo img:hover {
   animation-name: anim-logo-rotate;
-  animation-duration: 1s;
+  animation-duration: 0.7s;
   animation-iteration-count: 1;
 }
 
 @keyframes anim-logo-rotate {
   50% {
-      width: 35%;
+    transform: rotate(360deg);
   }
   100% {
-      width: 25%;
-      transform: rotate(360deg);
+    transform: rotate(-360deg);
   }
-} */
+}
 
 
 #search-bar {
@@ -122,6 +121,12 @@
   background-color: var(--body-background);
   margin-top: -10px;
   margin-left: -20px;
+}
+
+#icons #logout-button {
+  border: none;
+  background-color: transparent;
+  color: var(--icons);
 }
 
 #category-nav-bar {
