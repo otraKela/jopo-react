@@ -52,7 +52,7 @@ function Header() {
 
           { !userData 
             ?
-          <Link to="/Login">
+          <Link to="/login">
             <i className="fa-solid fa-circle-user top-right-icons"></i>
           </Link>
           :
@@ -61,7 +61,7 @@ function Header() {
           </Link>
           }
 
-          <Link to="#" id="cart-link">
+          <Link to="/shoppingCart" id="cart-link">
             <i className="fa-solid fa-cart-shopping top-right-icons"></i>
 
             <p id="shopping-cart-count">
@@ -70,11 +70,11 @@ function Header() {
           </Link>
 
           { userData &&
-          // <Link to="/" id="HomePage">
+          <Link to="/" id="HomePage">
             <button onClick={handleLogout} id="logout-button">
             <i className="fa-solid fa-right-from-bracket top-right-icons"></i>
             </button>
-          // </Link>
+          </Link>
           }
 
         </div>

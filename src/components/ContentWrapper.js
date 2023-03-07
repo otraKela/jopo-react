@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from '../pages/HomePage.js';
 import ProductDetail from '../pages/ProductDetail.js';
 import ProductList from '../pages/ProductList.js';
+import ShoppingCart from '../pages/ShoppingCart.js';
 import LoginForm from '../pages/LoginForm.js';
 import RegistrationForm from '../pages/RegistrationForm.js';
 import NotFound from '../pages/NotFound.js';
@@ -34,6 +35,10 @@ function ContentWrapper({ allData }) {
           <Route
             path="/registration"
             element={<RegistrationForm />}
+          />
+          <Route
+            path="/shoppingCart"
+            element={<ShoppingCart />}
           />
           <Route
             exact path="/"
