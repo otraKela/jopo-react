@@ -5,16 +5,19 @@ import '../assets/css/Header.css';
 
 import jopoLogo from '../assets/images/logo/isologo-marron.png';
 
-import UserDataContext from '../context/UserDataContext.js';
+import UserContext from '../context/UserContext.js';
 
 function Header() {
 
   const navigate = useNavigate();
 
-  const { userData, setUserData } = useContext(UserDataContext);
+  const { jwt, setJwt } = useContext(UserContext);
 
   const handleLogout = () => {
-    setUserData('');
+    setJwt('');
+    window.localStorage.removeItem('currentUserName');
+    window.localStorage.removeItem('currentUserId');
+    window.sessionStorage.removeItem('jwt');
     navigate('/');
   };
 
@@ -41,24 +44,25 @@ function Header() {
         </div>
 
         <div id="right-header">
+
           <div id="hello-user">
-            { userData &&
-              <p>Hola {userData.first_name}!</p>
-            }
+          { jwt &&
+              <p>Hola {window.localStorage.getItem('currentUserName')}!</p>
+          }
           </div>
 
 
         <div id="icons">
 
-          { !userData 
+          { !jwt 
             ?
-          <Link to="/login">
-            <i className="fa-solid fa-circle-user top-right-icons"></i>
-          </Link>
-          :
-          <Link to="#">
-            <i className="fa-solid fa-circle-user top-right-icons"></i>
-          </Link>
+            <Link to="/login">
+              <i className="fa-solid fa-circle-user top-right-icons"></i>      
+            </Link>
+            :
+            <Link to="#">
+              <i className="fa-solid fa-circle-user top-right-icons"></i>      
+            </Link>
           }
 
           <Link to="/shoppingCart" id="cart-link">
@@ -69,7 +73,7 @@ function Header() {
             </p>
           </Link>
 
-          { userData &&
+          { jwt &&
           <Link to="/" id="HomePage">
             <button onClick={handleLogout} id="logout-button">
             <i className="fa-solid fa-right-from-bracket top-right-icons"></i>

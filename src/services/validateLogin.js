@@ -18,7 +18,6 @@ async function validateLogin(credentials) {
     const response = await fetch(VALIDATE_LOGIN_URL, request)
 
     const result = await response.json();
-
     return result;
   }
   catch (error) {

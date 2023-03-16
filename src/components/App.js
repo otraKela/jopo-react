@@ -3,15 +3,14 @@ import { useState, useEffect } from 'react';
 
 import CategoryContext from '../context/CategoryContext.js';
 import ShoppingCartContext from '../context/ShoppingCartContext.js';
-import UserDataContext from '../context/UserDataContext.js';
+import UserContext from '../context/UserContext.js';
 
 import getCategories from '../services/getCategories';
 import getProducts from '../services/getProducts';
+import obtainUserFromJwt from '../services/obtainUserFromJwt.js';
 
 import '../assets/css/App.css';
 import '../assets/css/colors.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 import Header from './Header';
 import CategoryNavBar from './CategoryNavBar';
@@ -27,11 +26,22 @@ function App() {
   const [ allData, setAllData ] = useState('');
   const [ shoppingCart, setShoppingCart ] = useState('');
   const [ loading, setLoading ] = useState(false);
-  const [ userData, setUserData ] = useState('');
+  const [ jwt, setJwt ] = useState(null);
 
   useEffect ( () => {   
-
     setLoading (true);
+
+    if (window.sessionStorage.getItem('jwt')) {
+
+      const storedJwt = JSON.parse(window.sessionStorage.getItem('jwt'));
+
+      setJwt(storedJwt);
+
+      const {userName, userId} = obtainUserFromJwt (storedJwt);
+
+      window.localStorage.setItem ('currentUserName', userName);
+      window.localStorage.setItem ('currentUserId', userId);
+    };
 
     Promise.all ( [ getCategories(), getProducts() ] )
     .then ( ( [apiCategories, apiProducts ] ) => {
@@ -54,7 +64,7 @@ function App() {
       
       <CategoryContext.Provider value={{ categoryFilter, setCategoryFilter }} >
       <ShoppingCartContext.Provider value={{ shoppingCart, setShoppingCart }} >
-      <UserDataContext.Provider value={{ userData, setUserData }} >
+      <UserContext.Provider value={{ jwt, setJwt }} >
 
         <Header />
 
@@ -65,7 +75,7 @@ function App() {
         { categories && <Footer categories={categories} /> }
 
 
-      </UserDataContext.Provider >
+      </UserContext.Provider >
       </ShoppingCartContext.Provider>
       </CategoryContext.Provider>
     </div>

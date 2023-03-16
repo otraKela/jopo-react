@@ -2,8 +2,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import validateLogin from '../services/validateLogin.js';
+import obtainUserFromJwt from '../services/obtainUserFromJwt.js';
 
-import UserDataContext from '../context/UserDataContext.js';
+import UserContext from '../context/UserContext.js';
 
 
 import '../assets/css/LoginForm.css';
@@ -17,7 +18,7 @@ const LoginForm = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-  const { userData, setUserData } = useContext(UserDataContext);
+  const { setJwt } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -46,10 +47,18 @@ const LoginForm = () => {
     }
 
     const result = await validateLogin(userLoginData);
+  
+    if (result.jwt) {
 
-    if (result.user) {
-      // localStorage.setItem('user', JSON.stringify(result.user))
-      setUserData(result.user);
+      window.sessionStorage.setItem('jwt', JSON.stringify(result.jwt));
+
+      // Recupero userName y userId del token. Los guardo en el localStorage
+      const {userName, userId} = obtainUserFromJwt (result.jwt);
+
+      window.localStorage.setItem ('currentUserName', userName);
+      window.localStorage.setItem ('currentUserId', userId);
+  
+      setJwt(result.jwt);
       navigate('/');
 
     } else {
