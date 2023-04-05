@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import '../assets/css/Footer.css';
 
@@ -19,23 +20,23 @@ function Footer({categories}) {
           <ul>
             <li>
               <i className="fa-solid fa-envelope"></i>
-              {/* <a href="mailto:guidoymarcela@hotmail.com" target="_blank"> */}
+            <Link to="mailto:guidoymarcela@hotmail.com" target="_blank"> 
                 <span>grupo4@gmail.com</span>
-              {/* </a> */}
+                </Link>
             </li>
 
             <li>
               <i className="fa-brands fa-whatsapp"></i>
-              {/* <a href="https://wa.me/5491160021531" target="_blank"> */}
+            <Link to="https://wa.me/5491160021531" target="_blank"> 
                 <span>11-1234-5678</span>
-              {/* </a> */}
+                </Link>
             </li>
 
             <li>
               <i className="fa-solid fa-location-dot"></i>
-              {/* <a href="https://maps.google.com/?ll=-34.58884772692726, -58.42807398405056" target="_blank"> */}
+              <Link to="https://maps.google.com/?ll=-34.58884772692726, -58.42807398405056" target="_blank"> 
                 <span>Nuestra calle 1234, 1111 CABA</span>
-              {/* </a> */}
+              </Link>
             </li>
           </ul>
         </div>
@@ -43,24 +44,24 @@ function Footer({categories}) {
         <div id="social-networks">
           <h3>Sigamos conectados</h3>
 
-          {/* <a href="https://www.facebook.com" target="_blank"> */}
+          <Link to="https://www.facebook.com" target="_blank">
             <i className="fa-brands fa-facebook i-fb"></i>
-            {/* </a> */}
+            </Link>
 
-          {/* <a href="https://www.instagram.com" target="_blank"> */}
+          <Link to="https://www.instagram.com" target="_blank">
             <i className="fa-brands fa-instagram i-ig"></i>
-            {/* </a> */}
+            </Link>
 
 
-          {/* <a href="/" className="firma" style="text-decoration:none"> */}
+          <Link to="/" className="firma" > 
             <h1 id="firma">Tienda JOPO</h1>
-          {/* </a> */}
+          </Link> 
 
         </div>
 
-        {/* <a href="https://wa.me/5491160021531" target="_blank" aria-label="Comunicate por WhatsApp"> */}
+          <Link to="https://wa.me/5491160021531" target="_blank" aria-label="Comunicate por WhatsApp"> 
           <i className="fa-brands fa-whatsapp-square i-wa"></i>
-          {/* </a> */}
+          </Link>
 
       </footer>
 

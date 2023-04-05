@@ -54,9 +54,12 @@ footer ul li span {
   margin-left: 10px;
 }
 
-footer ul a {
-  text-decoration: none
+footer ul a,
+footer #contacto a {
+  text-decoration: none;
+  color: var(--body-background);
 }
+
 
 footer #category-nav-bar :hover,
 #contact :hover,
@@ -69,6 +72,7 @@ footer #category-nav-bar :hover,
 .i-ig {
   margin-top: 20px;
   font-size: 20px;
+  color: var(--body-background);
 }
 
 .i-ig {
@@ -91,5 +95,11 @@ footer #category-nav-bar :hover,
   font-family: 'Lobster', cursive;
   font-size: 20px;
   margin-top: 25px;
+  color: var(--strong);
+}
+
+.firma {
+  text-decoration: none;
+
 }
 

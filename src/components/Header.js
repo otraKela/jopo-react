@@ -11,13 +11,14 @@ function Header() {
 
   const navigate = useNavigate();
 
-  const { jwt, setJwt } = useContext(UserContext);
+  const { jwt, setJwt, cartCount, setCartCount } = useContext(UserContext);
 
   const handleLogout = () => {
-    setJwt('');
+    setJwt(null);
+    setCartCount(0);
+    window.sessionStorage.removeItem('jwt');
     window.localStorage.removeItem('currentUserName');
     window.localStorage.removeItem('currentUserId');
-    window.sessionStorage.removeItem('jwt');
     navigate('/');
   };
 
@@ -65,17 +66,18 @@ function Header() {
             </Link>
           }
 
+          {/* <Link to="/shoppingCart" id="cart-link"> */}
           <Link to="/shoppingCart" id="cart-link">
             <i className="fa-solid fa-cart-shopping top-right-icons"></i>
 
             <p id="shopping-cart-count">
-
+              {cartCount}
             </p>
           </Link>
 
           { jwt &&
           <Link to="/" id="HomePage">
-            <button onClick={handleLogout} id="logout-button">
+            <button onClick={() => handleLogout()} id="logout-button">
             <i className="fa-solid fa-right-from-bracket top-right-icons"></i>
             </button>
           </Link>

@@ -1,14 +1,33 @@
-import React from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
+import UserContext from '../context/UserContext.js';
+
 import formatPrice from '../services/formatPrice.js';
-import calculateInstallments from '../services/calculateInstallments.js';
 
-const ShoppingCartTotals = ({cartSubtotal}) => {
 
-  let Subtotal = cartSubtotal;
-  let Total = cartSubtotal;
-  let Installments = calculateInstallments(Total, 0);
+function ShoppingCartTotals () {
+
+  const { cart } = useContext(UserContext);
+  
+  const [subtotal, setSubtotal] = useState(() => calculateSubtotal());
+  const [total, setTotal] = useState((0));
+  const [installments, setInstallments] = useState((0));
+
+  useEffect(() => {
+    setTotal (subtotal);
+  }, [subtotal]);
+
+  useEffect(() => {
+    setInstallments (total / 6);
+  }, [total]);
+
+
+  async function calculateSubtotal () {
+    let sub = await cart.reduce ( (accumulator, currentValue) => 
+        accumulator + Number(currentValue.price * ( 1 - currentValue.discount / 100 )), 0);
+    setSubtotal(sub);
+  }
 
 
   return (
@@ -25,7 +44,7 @@ const ShoppingCartTotals = ({cartSubtotal}) => {
         <div id="shipping-cost">
           <input type="number" name="postal-code" placeholder="Tu código postal" />
 
-          <button type="submit">Calcular</button>
+          <button>Calcular</button>
         </div>
       </form>
 
@@ -35,29 +54,29 @@ const ShoppingCartTotals = ({cartSubtotal}) => {
 
       <div id="subtotal">
         <p>Subtotal (sin envío):</p>
-        <h3 id="subtotal">{formatPrice(Subtotal, 2)}</h3>
+        <h3 id="subtotal">{formatPrice(subtotal, 2)}</h3>
       </div>
 
       <div id="total">
         <h2>Total:</h2>
-        <h2 id="total">{formatPrice(Total, 2)}</h2>
+        <h2 id="total">{formatPrice(total, 2)}</h2>
       </div>
 
       <div id="payment-methods">
         <i className="fa-solid fa-credit-card card-icon"></i>
-        <strong>6 cuotas sin interés de</strong> $<span id="installments">
-          {formatPrice(Installments, 2)}
+        <strong>6 cuotas sin interés de</strong> <span id="installments">
+          {formatPrice(installments, 2)}
         </span>
       </div>
 
       <div id="start-the-purchase">
-        {/* <Link id="purchase-link"> */}
+
           <button>Iniciar Compra</button>
-        {/* </Link> */}
+
       </div>
 
       <div id="more-products">
-        <Link to="/productsList">Ver más productos</Link>
+        <Link to="/productList">Ver más productos</Link>
       </div>
     </section>
   )

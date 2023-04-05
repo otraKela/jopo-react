@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import UserContext from '../context/UserContext.js';
 
 import ShoppingCartItem from './ShoppingCartItem.js';
 
-const ShoppingCartContent = ({ cartItems }) => {
+const ShoppingCartContent = () => {
 
+  const { cart } = useContext(UserContext);
 
   return (
 
     <section id="cart-content">
       {
-        cartItems.map((item, index) => {
+        cart.map((item, index) => {
           return (
             <article id="item" key={item.id + index} >
 

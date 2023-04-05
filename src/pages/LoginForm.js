@@ -49,12 +49,10 @@ const LoginForm = () => {
     const result = await validateLogin(userLoginData);
   
     if (result.jwt) {
-
       window.sessionStorage.setItem('jwt', JSON.stringify(result.jwt));
 
       // Recupero userName y userId del token. Los guardo en el localStorage
       const {userName, userId} = obtainUserFromJwt (result.jwt);
-
       window.localStorage.setItem ('currentUserName', userName);
       window.localStorage.setItem ('currentUserId', userId);
   

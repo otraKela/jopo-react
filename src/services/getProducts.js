@@ -1,9 +1,18 @@
 import {GET_PRODUCTS_URL} from './settings';
 
-async function getProducts () { 
-  const response = await fetch(GET_PRODUCTS_URL);
-  const apiProducts = await response.json();
-  return await apiProducts;
+async function getProducts (id) { 
+
+  let url =   id
+              ?
+              `${GET_PRODUCTS_URL}/${id}`
+              :
+              GET_PRODUCTS_URL;
+
+  const response = await fetch(url);
+
+  const products = await response.json();
+
+  return await products;
 };
 
 

@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, {useContext} from 'react';
+import { useParams, Link } from 'react-router-dom';
 
 import '../assets/css/ProductDetail.css';
 
@@ -7,14 +7,41 @@ import formatPrice from '../services/formatPrice.js';
 import calculateFinalPrice from '../services/calculateFinalPrice.js';
 import calculateInstallments from '../services/calculateInstallments.js';
 
+import UserContext from '../context/UserContext.js';
+
+
 function ProductDetail(props) {
 
+  const { cart, setCart, setCartCount } = useContext(UserContext);
+
   const {id} = useParams();
+
+  const addProductToCart = () => {
+    let newCart = cart ? cart : [];
+
+    if (!(newCart.some ((item) => item.id === product.id))) {
+      newCart.push(product);
+      setCart ( newCart );
+      setCartCount ( newCart.length );
+      let allUsersCarts = JSON.parse(window.localStorage.getItem ('shoppingCarts'));
+      let userId = window.localStorage.getItem ('currentUserId')
+
+      if (allUsersCarts) {
+        allUsersCarts[userId] = newCart;
+      } else {
+        allUsersCarts = {
+          [userId]: newCart
+        }
+      }   
+
+      window.localStorage.setItem ('shoppingCarts', JSON.stringify (allUsersCarts));
+    }  
+  }
 
   const products = props.products;
 
   let product = products.find(element => element.id == id);
-
+  
   if (product) {
 
     return (
@@ -58,9 +85,9 @@ function ProductDetail(props) {
 
             </div>
 
-            <form id="add-to-cart" >
-              <button type="submit">AGREGAR AL CARRITO</button>
-            </form>
+            <Link to='/shoppingCart' id="add-to-cart" >
+              <button onClick={() => addProductToCart()} >AGREGAR AL CARRITO</button>
+            </Link>
 
 
 

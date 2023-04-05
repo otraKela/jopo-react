@@ -1,26 +1,54 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+import UserContext from '../context/UserContext.js';
 
 import formatPrice from '../services/formatPrice.js';
 import calculateFinalPrice from '../services/calculateFinalPrice.js';
 
-const ShoppingCartItem = ({item}) => {
+function ShoppingCartItem ({item}) {
+
+  const { cart, setCart } = useContext(UserContext);
+
+  const [ itemToRemove, setItemToRemove ] = useState(null);
+
+  useEffect (() => {
+    if (itemToRemove) {   
+      let allUsersCarts;
+      let userId;
+
+      let newCart = cart.filter ( product => product.id !== itemToRemove);
+
+      if ( newCart.length === 0 ) {
+        setCart (null);
+        allUsersCarts = JSON.parse(window.localStorage.getItem ('shoppingCarts'));
+        userId = window.localStorage.getItem ('currentUserId');
+        delete allUsersCarts[userId];
+      } else {
+        setCart (newCart);
+        allUsersCarts = JSON.parse(window.localStorage.getItem ('shoppingCarts'));
+        userId = window.localStorage.getItem ('currentUserId')
+        allUsersCarts[userId] = newCart;
+      }  
+      
+      window.localStorage.setItem ('shoppingCarts', JSON.stringify (allUsersCarts));
+    } 
+  }, [itemToRemove]);
+
 
   return (
 
     <React.Fragment>
-      <Link to="#" className="go-to-detail">
-        <img src={item.img} alt="Item" />
+      <Link to={`/productDetail/${item.id}`} className="go-to-detail">
+        <img src={item.img} alt="Product" />
       </Link>
 
       <p>{item.name}</p>
 
-      {/* <form > */}
-        <button id="delete-button">
+        <button onClick={() => setItemToRemove(item.id)} id="delete-button">
           <i className="fa-solid fa-trash-can"></i>
         </button>
-      {/* </form> */}
-
+ 
       {
         (!item.discount || item.discount === 0)
           ?

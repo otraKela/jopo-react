@@ -13,6 +13,7 @@
   opacity: 0.9;
   padding: 15px 20px;
   margin: 10px 0;
+  justify-content: flex-start;
 }
 
 #shopping-cart article {
