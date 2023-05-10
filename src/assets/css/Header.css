@@ -72,9 +72,13 @@
   justify-content: center;
 }
 
-#icons a {
+#icons a,
+#icons button {
   text-decoration: none;
   border: none;
+  color: var(--icons);
+  background-color: var(--body-background);  
+  display: flex;
 }
 
 #icons a i {
@@ -93,10 +97,6 @@
   min-height: 40px;
 }
 
-#cart-link {
-  display: flex;
-}
-
 .top-right-icons {
   font-size: 2rem;
   padding: 0 10px;
@@ -108,7 +108,7 @@
   align-items: center;
 }
 
-#shopping-cart-count {
+.shopping-cart-count {
   width: 1.5rem;
   height: 1.5rem;
   text-align: center;

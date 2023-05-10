@@ -9,6 +9,7 @@ export function UserContextProvider ({children}) {
   const [ jwt, setJwt ] = useState(() => JSON.parse(window.sessionStorage.getItem('jwt')));
   const [ cart, setCart ] = useState(null);
   const [ cartCount, setCartCount ] = useState(0);
+  const [ loginMessage, setLoginMessage ] = useState('');
 
   let userId;
   let userName;
@@ -77,7 +78,7 @@ export function UserContextProvider ({children}) {
     };
   }, [cart])
 
-  return  <UserContext.Provider value={{ jwt, setJwt, cart, setCart, cartCount, setCartCount }}>
+  return  <UserContext.Provider value={{ jwt, setJwt, cart, setCart, cartCount, setCartCount, loginMessage, setLoginMessage }}>
             {children}
           </UserContext.Provider>
 }

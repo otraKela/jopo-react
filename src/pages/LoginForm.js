@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import validateLogin from '../services/validateLogin.js';
@@ -18,10 +18,17 @@ const LoginForm = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-  const { setJwt } = useContext(UserContext);
+  // const { setJwt } = useContext(UserContext);
+  const { setJwt, loginMessage } = useContext(UserContext);
 
   const navigate = useNavigate();
 
+  useEffect (() => {
+    setErrorMessage (loginMessage);
+    setTimeout (() => setErrorMessage(''), 1000 * 5);
+  }, [loginMessage])
+
+    
   const editEmail = (newEmail) => {
     setUserEmail(newEmail);
     if (!newEmail || newEmail === '' || !(newEmail.includes('@'))) {
@@ -57,6 +64,7 @@ const LoginForm = () => {
       window.localStorage.setItem ('currentUserId', userId);
   
       setJwt(result.jwt);
+      setErrorMessage('');
       navigate('/');
 
     } else {
@@ -70,7 +78,7 @@ const LoginForm = () => {
       <div id="login-frame">
 
         <form id="login-form" onSubmit={handleLoginSubmit}>
-          <input id="message" defaultValue={errorMessage} />
+          <input className="message" defaultValue={errorMessage} />
 
           <div className="form-data">
             <label>Email </label>

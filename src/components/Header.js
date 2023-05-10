@@ -10,8 +10,8 @@ import UserContext from '../context/UserContext.js';
 function Header() {
 
   const navigate = useNavigate();
-
-  const { jwt, setJwt, cartCount, setCartCount } = useContext(UserContext);
+  
+  const { jwt, setJwt, cartCount, setCartCount, setLoginMessage } = useContext(UserContext);
 
   const handleLogout = () => {
     setJwt(null);
@@ -21,6 +21,24 @@ function Header() {
     window.localStorage.removeItem('currentUserId');
     navigate('/');
   };
+
+  const handleCartRequest = () => {
+    if (jwt) {
+      navigate('/shoppingCart');
+    } else {
+      setLoginMessage('Por favor ingrese sus credenciales para acceder al carrito de compras');
+      navigate('/login');
+    }
+  }
+
+  const handleProfileRequest = () => {
+    if (jwt) {
+      navigate('#');
+    } else {
+      setLoginMessage('');
+      navigate('/login');
+    }
+  }
 
   return (
     <React.Fragment>
@@ -47,43 +65,32 @@ function Header() {
         <div id="right-header">
 
           <div id="hello-user">
-          { jwt &&
-              <p>Hola {window.localStorage.getItem('currentUserName')}!</p>
-          }
+            { jwt &&
+                <p>Hola {window.localStorage.getItem('currentUserName')}!</p>
+            }
           </div>
 
-
-        <div id="icons">
-
-          { !jwt 
-            ?
-            <Link to="/login">
-              <i className="fa-solid fa-circle-user top-right-icons"></i>      
-            </Link>
-            :
-            <Link to="#">
-              <i className="fa-solid fa-circle-user top-right-icons"></i>      
-            </Link>
-          }
-
-          {/* <Link to="/shoppingCart" id="cart-link"> */}
-          <Link to="/shoppingCart" id="cart-link">
-            <i className="fa-solid fa-cart-shopping top-right-icons"></i>
-
-            <p id="shopping-cart-count">
-              {cartCount}
-            </p>
-          </Link>
-
-          { jwt &&
-          <Link to="/" id="HomePage">
-            <button onClick={() => handleLogout()} id="logout-button">
-            <i className="fa-solid fa-right-from-bracket top-right-icons"></i>
+          <div id="icons">
+            <button onClick={() => handleProfileRequest()}>
+                <i className="fa-solid fa-circle-user top-right-icons"></i>      
             </button>
-          </Link>
-          }
 
-        </div>
+            <button onClick={() => handleCartRequest()}>
+              <i className="fa-solid fa-cart-shopping top-right-icons"></i>
+
+              <p className="shopping-cart-count">{cartCount}</p>
+
+            </button>
+          
+            { jwt &&
+              <Link to="/" id="HomePage">
+                <button onClick={() => handleLogout()} id="logout-button">
+                  <i className="fa-solid fa-right-from-bracket top-right-icons"></i>
+                </button>
+              </Link>
+            }
+
+          </div>
         </div>
       </div>
 
