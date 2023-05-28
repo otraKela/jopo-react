@@ -83,6 +83,7 @@ const LoginForm = () => {
           <div className="form-data">
             <label>Email </label>
             <input type="email" name="email" id="email"
+              autoComplete="new-password"
               placeholder="Ingrese un correo electrónico"
               onChange={({ target }) => { editEmail(target.value) }}
               value={userEmail} />
@@ -92,6 +93,7 @@ const LoginForm = () => {
           <div className="form-data">
             <label>Contraseña </label>
             <input type="password" name="password" id="password"
+              autoComplete="new-password"
               placeholder="Ingrese su password"
               onChange={({ target }) => { editPassword(target.value) }} 
               value={userPassword} />

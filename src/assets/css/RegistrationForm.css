@@ -35,7 +35,7 @@
   text-align: left;
 }
 
-#registration-form input {
+#registration-form .form-data input {
   background-color: var(--input);
   width: 100%;
   border-radius: 3px;
@@ -53,6 +53,20 @@
   border: none;
   width: 100%;
   margin: 5px 0;
+}
+
+#registration-form .password-data {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  border: none;
+  width: 100%;
+  margin: auto;
+}
+
+#registration-form .fa-eye,
+#registration-form .fa-eye-slash {
+  margin-left: -2vw;
 }
 
 #birthday-proms {
@@ -95,6 +109,16 @@
   margin-bottom: 5px;
 }
 
+#registration-form .message {
+  color: var(--alert);
+  font-weight: bold;
+  border: none;
+  width: 100%;
+  font-size: 12px;
+  margin-bottom: 10px;
+  text-align: center;
+
+}
 
 @media (min-width:480px) {
   #registration-frame {

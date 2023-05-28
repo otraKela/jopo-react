@@ -29,6 +29,8 @@
 
 #login-form label {
   font-size: 15px;
+  width: 90%;
+  text-align: left;
 }
 
 #login-form #email,
