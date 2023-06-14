@@ -66,13 +66,14 @@ async function registerUser (userData) {
   // Completing the registration process by adding the user to the DB
   try {
 console.log('entré al try de datos')
+res.setHeader("Access-Control-Allow-Origin", "*")
     const request = {
       'method': 'POST',
       'body': formData
      };
-     
+console.log('linea 73')     
     const response = await fetch(POST_USERS_URL, request);
-
+console.log('linea 75')   
     const result = await response.json();
 console.log('result data', result) 
     return result;
