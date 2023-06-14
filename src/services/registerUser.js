@@ -66,9 +66,10 @@ async function registerUser (userData) {
   // Completing the registration process by adding the user to the DB
   try {
 console.log('entré al try de datos')
-res.setHeader("Access-Control-Allow-Origin", "*")
+
     const request = {
       'method': 'POST',
+      'headers': {"Access-Control-Allow-Origin": "*"},      
       'body': formData
      };
 console.log('linea 73')     
@@ -78,7 +79,7 @@ console.log('linea 75')
 console.log('result data', result) 
     return result;
   }
-  catch (error) {
+  catch (error) { 
     return error;
   }
 
