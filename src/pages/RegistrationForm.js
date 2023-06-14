@@ -262,6 +262,7 @@ console.log('result', result)
                 onClick={togglePasswordType}></i>
             </div>            
             <p className="password-error error">{passwordError}</p>
+            
           </div>
 
           <div className="form-data">
