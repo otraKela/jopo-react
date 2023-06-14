@@ -11,14 +11,15 @@ function Header() {
 
   const navigate = useNavigate();
   
-  const { jwt, setJwt, cartCount, setCartCount, setLoginMessage } = useContext(UserContext);
+  const { jwt, setJwt, cartCount, setCartCount, setLoginMessage, userName, setUserName, userImg, setUserImg, setUserId } = useContext(UserContext);
 
   const handleLogout = () => {
     setJwt(null);
     setCartCount(0);
     window.sessionStorage.removeItem('jwt');
-    window.localStorage.removeItem('currentUserName');
-    window.localStorage.removeItem('currentUserId');
+    setUserName('');
+    setUserId('');
+    setUserImg('');
     navigate('/');
   };
 
@@ -66,13 +67,21 @@ function Header() {
 
           <div id="hello-user">
             { jwt &&
-                <p>Hola {window.localStorage.getItem('currentUserName')}!</p>
+                <p>Hola {userName}!</p>
             }
           </div>
 
           <div id="icons">
             <button onClick={() => handleProfileRequest()}>
-                <i className="fa-solid fa-circle-user top-right-icons"></i>      
+              { !jwt &&
+                <i className="fa-solid fa-circle-user top-right-icons"></i>  
+              } 
+              { jwt &&
+                <img className="profile-img"
+                  src={userImg}
+                  alt="images/users/default-user" />  
+              } 
+
             </button>
 
             <button onClick={() => handleCartRequest()}>

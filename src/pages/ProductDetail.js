@@ -12,7 +12,7 @@ import UserContext from '../context/UserContext.js';
 
 function ProductDetail(props) {
 
-  const { jwt, cart, setCart, setCartCount, setLoginMessage } = useContext(UserContext);
+  const { jwt, cart, setCart, setCartCount, setLoginMessage, userId } = useContext(UserContext);
 
   const {id} = useParams();
 
@@ -33,7 +33,6 @@ function ProductDetail(props) {
         setCart ( newCart );
         setCartCount ( newCart.length );
         let allUsersCarts = JSON.parse(window.localStorage.getItem ('shoppingCarts'));
-        let userId = window.localStorage.getItem ('currentUserId')
 
         if (allUsersCarts) {
           allUsersCarts[userId] = newCart;

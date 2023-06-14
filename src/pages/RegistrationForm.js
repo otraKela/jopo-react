@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import '../assets/css/RegistrationForm.css';
@@ -7,8 +7,9 @@ import registerUser from '../services/registerUser.js';
 
 import UserContext from '../context/UserContext.js';
 
-
 function RegistrationForm() {
+
+  const form = useRef();
 
   const [userFirstName, setUserFirstName] = useState('');
   const [userLastName, setUserLastName] = useState('');
@@ -16,6 +17,7 @@ function RegistrationForm() {
   const [userPhone, setUserPhone] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [userConfirmPassword, setUserConfirmPassword] = useState('');
+  const [userImage, setUserImage] = useState(null);
   const [userDateBirth, setUserDateBirth] = useState('');
 
   const [errorMessage, setErrorMessage] = useState('');
@@ -32,6 +34,8 @@ function RegistrationForm() {
   const { setJwt } = useContext(UserContext);
 
   const navigate = useNavigate();
+
+  
 
   const editFirstName = (newFirstName) => {
     setUserFirstName(newFirstName);
@@ -72,9 +76,13 @@ function RegistrationForm() {
   const editPassword = (newPassword) => {
     setUserPassword(newPassword);
     if (!newPassword || newPassword === '' || newPassword.length < 8) {
-      setPasswordError('La contraseña debe conterner, al menos, 8 caracteres');
+      setPasswordError('La contraseña debe contener, al menos, 8 caracteres');
     } else {
-      setPasswordError('');
+      if (userConfirmPassword && newPassword !== userConfirmPassword) {
+        setPasswordError('Las contraseñas ingresadas no coinciden');
+      } else {
+        setPasswordError('');
+      }
     }
   }
 
@@ -87,7 +95,11 @@ function RegistrationForm() {
     }
   }
 
-  const editDateBirth = (newDateBirth) => {
+  const handleImage = (newImage) => {
+    setUserImage(newImage);
+  }
+
+  const editDateBirth = (newDateBirth) => { 
     setUserDateBirth(newDateBirth);
   }
 
@@ -105,6 +117,10 @@ function RegistrationForm() {
      } else {
       setConfirmPasswordType( 'password' );
     }
+  }
+
+  const resetForm = () => {
+    form.current.reset();
   }
 
   const handleRegistration = async (event) => {
@@ -132,7 +148,7 @@ function RegistrationForm() {
     } else {
       setEmailError('');
     }
-    if (userPhone && (userPhone.length < 10 || isNaN(userPhone))) {
+    if (userPhone && (userPhone.length < 8 || isNaN(userPhone))) {
       errorCount += 1;
       setPhoneError('Ingrese su teléfono con código de área (sin 0 ni 15) y sin espacios');
     } else {
@@ -159,18 +175,16 @@ function RegistrationForm() {
         email: userEmail,
         phone: userPhone,
         password: userPassword,
-        dateBirth: userDateBirth
+        img: userImage,
+        date_birth: userDateBirth,
       }
 
       const result = await registerUser(userRegistrationData);
 
       if (result.jwt) {
+
         window.sessionStorage.setItem('jwt', JSON.stringify(result.jwt));
-  
-        // Recupero userName y userId del token. Los guardo en el localStorage
-        window.localStorage.setItem ('currentUserName', result.data.first_name);
-        window.localStorage.setItem ('currentUserId', result.data.id);
-    
+      
         setJwt(result.jwt);
         setErrorMessage('');
         navigate('/');
@@ -189,7 +203,7 @@ function RegistrationForm() {
     <div id="registration">
       <div id="registration-frame">
 
-        <form id="registration-form">
+        <form ref={form} id="registration-form" encType="multipart/form-data" >
           <input className="message" defaultValue={errorMessage} />
 
           <div className="form-data">
@@ -233,7 +247,7 @@ function RegistrationForm() {
           <div className="form-data">
             <label>Contraseña *</label>
             <div className="password-data" >
-              <input type={passwordType} name="password" id="password"
+              <input type={passwordType} name="password" className="password"
                 autoComplete="new-password"
                 placeholder="Ingrese una password"
                 onChange={({ target }) => { editPassword(target.value) }} 
@@ -253,7 +267,7 @@ function RegistrationForm() {
           <div className="form-data">
             <label>Confirmar contraseña *</label>
             <div className="password-data" >
-              <input type={confirmPasswordType} name="password" id="password"
+              <input type={confirmPasswordType} name="confirm_password" className="password"
                 placeholder="Repita la password"
                 onChange={({ target }) => { editConfirmPassword(target.value) }} 
                 value={userConfirmPassword} />
@@ -271,22 +285,25 @@ function RegistrationForm() {
 
           <div className="form-data">
             <label>Subir foto</label>
-            <input type="file" name="image" id="image" />
+            <input type="file" name="image" id="image" 
+              accept=".jpg, .png, .jpeg"
+              // value={userImage}
+              onChange={ ({target}) => { handleImage(target.files[0]) }}
+            />
             <p className="image-error error"></p>
           </div>
 
           <div className="form-data">
             <p id="birthday-proms">Si querés recibir promociones por tu cumpleaños ingresá tu fecha de nacimiento</p>
-            {/* <label>Fecha de nacimiento</label> */}
+
             <input type="date" name="birthday" 
               enabled="false"
-              // placeholder="dd/mm/aa"
               onChange={({ target }) => { editDateBirth(target.value) }} 
               value={userDateBirth} />
           </div>
 
           <div id="registration-buttons">
-            <button type="reset" >BORRAR</button>
+            <button type="reset" onClick={resetForm} >BORRAR</button>
 
             <button onClick={handleRegistration}>CREAR CUENTA</button>
           </div>

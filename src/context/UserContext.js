@@ -10,9 +10,10 @@ export function UserContextProvider ({children}) {
   const [ cart, setCart ] = useState(null);
   const [ cartCount, setCartCount ] = useState(0);
   const [ loginMessage, setLoginMessage ] = useState('');
+  const [ userId, setUserId ] = useState('');
+  const [ userName, setUserName ] = useState('');
+  const [ userImg, setUserImg ] = useState('');
 
-  let userId;
-  let userName;
   let allUsersCarts;
 
   // Updates the cart products data (price, discount) when the user logs in
@@ -34,13 +35,14 @@ export function UserContextProvider ({children}) {
     return await product.data;
   }
 
-
-
   useEffect (() => {
     if (jwt) {
+
       const userData = obtainUserFromJwt(jwt);
-      userId = userData.userId;
-      userName = userData.userName;
+
+      setUserId(userData.userId);
+      setUserName(userData.userName);
+      setUserImg(userData.userImg);
 
       allUsersCarts = JSON.parse(window.localStorage.getItem('shoppingCarts'));
 
@@ -52,8 +54,6 @@ export function UserContextProvider ({children}) {
         setCart(null);
       }
     }
-      window.localStorage.setItem ('currentUserName', userName);
-      window.localStorage.setItem ('currentUserId', userId);
   }, [jwt]);
 
 
@@ -61,7 +61,6 @@ export function UserContextProvider ({children}) {
     if (cart) {
       setCartCount ( cart.length );
 
-      userId = window.localStorage.getItem('currentUserId');
       allUsersCarts = JSON.parse(window.localStorage.getItem('shoppingCarts'));
   
       if (allUsersCarts) {
@@ -78,7 +77,7 @@ export function UserContextProvider ({children}) {
     };
   }, [cart])
 
-  return  <UserContext.Provider value={{ jwt, setJwt, cart, setCart, cartCount, setCartCount, loginMessage, setLoginMessage }}>
+  return  <UserContext.Provider value={{ jwt, setJwt, cart, setCart, cartCount, setCartCount, loginMessage, setLoginMessage, userName, setUserName, userImg, setUserImg, userId, setUserId }}>
             {children}
           </UserContext.Provider>
 }

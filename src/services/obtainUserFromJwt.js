@@ -5,7 +5,8 @@ function obtainUserFromJwt (jwt) {
 
   return  {
           userName: payloadParsed.userName, 
-          userId: payloadParsed.userId
+          userId: payloadParsed.userId,
+          userImg: payloadParsed.userImg,
           };
 
 }

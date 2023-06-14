@@ -21,7 +21,6 @@ let products;
 function App() {
 
   const [ allData, setAllData ] = useState('');
-  // const [ shoppingCart, setShoppingCart ] = useState('');
   const [ loading, setLoading ] = useState(false);
 
   useEffect ( () => {   

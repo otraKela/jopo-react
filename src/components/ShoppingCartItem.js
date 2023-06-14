@@ -22,12 +22,10 @@ function ShoppingCartItem ({item}) {
       if ( newCart.length === 0 ) {
         setCart (null);
         allUsersCarts = JSON.parse(window.localStorage.getItem ('shoppingCarts'));
-        userId = window.localStorage.getItem ('currentUserId');
         delete allUsersCarts[userId];
       } else {
         setCart (newCart);
         allUsersCarts = JSON.parse(window.localStorage.getItem ('shoppingCarts'));
-        userId = window.localStorage.getItem ('currentUserId')
         allUsersCarts[userId] = newCart;
       }  
       

@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import validateLogin from '../services/validateLogin.js';
-import obtainUserFromJwt from '../services/obtainUserFromJwt.js';
+// import obtainUserFromJwt from '../services/obtainUserFromJwt.js';
 
 import UserContext from '../context/UserContext.js';
 
@@ -33,7 +33,8 @@ const LoginForm = () => {
     setUserEmail(newEmail);
     if (!newEmail || newEmail === '' || !(newEmail.includes('@'))) {
       setEmailError('Debe ingresar una dirección de correo válida');
-      setTimeout(() => setEmailError(''), 1000 * 5);
+    } else {
+      setEmailError ('');
     }
   }
 
@@ -41,7 +42,8 @@ const LoginForm = () => {
     setUserPassword(newPassword);
     if (!newPassword || newPassword === '' || newPassword.length < 8) {
       setPasswordError('Debe ingresar una password válida');
-      setTimeout(() => setPasswordError(''), 1000 * 5);
+    } else {
+      setPasswordError ('');
     }
   }
 
@@ -54,14 +56,15 @@ const LoginForm = () => {
     }
 
     const result = await validateLogin(userLoginData);
-  
+
     if (result.jwt) {
       window.sessionStorage.setItem('jwt', JSON.stringify(result.jwt));
 
       // Recupero userName y userId del token. Los guardo en el localStorage
-      const {userName, userId} = obtainUserFromJwt (result.jwt);
-      window.localStorage.setItem ('currentUserName', userName);
-      window.localStorage.setItem ('currentUserId', userId);
+      // const {userName, userId, userImg} = obtainUserFromJwt (result.jwt);
+      // window.localStorage.setItem ('currentUserName', userName);
+      // window.localStorage.setItem ('currentUserId', userId);
+      // window.localStorage.setItem ('currentUserImg', userImg);
   
       setJwt(result.jwt);
       setErrorMessage('');
