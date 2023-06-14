@@ -178,7 +178,7 @@ function RegistrationForm() {
         img: userImage,
         date_birth: userDateBirth,
       }
-console.log ('userRegistrationData', userRegistrationData)
+
       const result = await registerUser(userRegistrationData);
 console.log('result', result)
       if (result.jwt) {
