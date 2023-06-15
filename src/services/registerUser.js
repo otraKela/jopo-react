@@ -68,7 +68,7 @@ async function registerUser (userData) {
 
     const request = {
       'headers': {
-        'Referer': 'https://jopo-react.netlify.app/registration',
+        // 'Referer': 'https://jopo-react.netlify.app/registration',
         'Content-Type': 'application/json'
          },
       'method': 'POST',
