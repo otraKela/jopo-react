@@ -69,7 +69,7 @@ console.log('entré al try de datos')
 
     const request = {
       'headers': {
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
         'Access-Control-Allow-Headers': 'multipart/form-data',
