@@ -76,10 +76,10 @@ console.log(formData.get('img')
     const request = {
       'headers': {
         'Referer': 'https://jopo-react.netlify.app/registration',
-        'Content-Type': 'multipart/form-data',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
-        'Access-Control-Allow-Headers': 'multipart/form-data',
+        'Content-Type': 'application/json'
+        // 'Access-Control-Allow-Origin': '*',
+        // 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
+        // 'Access-Control-Allow-Headers': 'multipart/form-data',
         },
       'method': 'POST',
       'body': formData

@@ -180,7 +180,7 @@ function RegistrationForm() {
       }
 
       const result = await registerUser(userRegistrationData);
-console.log('result', result)
+
       if (result.jwt) {
 
         window.sessionStorage.setItem('jwt', JSON.stringify(result.jwt));
