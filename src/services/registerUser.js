@@ -68,8 +68,13 @@ async function registerUser (userData) {
 console.log('entré al try de datos')
 
     const request = {
+      'headers': {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
+        'Access-Control-Allow-Headers': 'multipart/form-data',
+        },
       'method': 'POST',
-      'headers': {"Access-Control-Allow-Origin": "*"},      
       'body': formData
      };
 console.log('linea 73')     
