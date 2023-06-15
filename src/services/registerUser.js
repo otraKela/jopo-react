@@ -66,9 +66,16 @@ async function registerUser (userData) {
   // Completing the registration process by adding the user to the DB
   try {
 console.log('entré al try de datos')
-
+console.log(formData.get('firstName'))
+console.log(formData.get('lastName'))
+console.log(formData.get('email'))
+console.log(formData.get('phone'))
+console.log(formData.get('password'))
+console.log(formData.get('img')
+)
     const request = {
       'headers': {
+        'Referer': 'https://jopo-react.netlify.app/registration',
         'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
