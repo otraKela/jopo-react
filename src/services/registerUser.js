@@ -65,11 +65,11 @@ async function registerUser (userData) {
 
   // Completing the registration process by adding the user to the DB
   try {
-
+console.log('email', formData.get('email'))
     const request = {
-      'headers': {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
+      // 'headers': {
+      //   'Content-Type': 'application/x-www-form-urlencoded'
+      // },
       'method': 'POST',
       'body': formData
      };
