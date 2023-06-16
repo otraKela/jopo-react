@@ -67,9 +67,9 @@ async function registerUser (userData) {
   try {
 console.log('email', formData.get('email'))
     const request = {
-      'headers': {
-        'Content-Type': 'multipart/form-data; boundary=----------01031960'
-      },
+      // 'headers': {
+      //   'Content-Type': 'multipart/form-data; boundary=----------01031960'
+      // },
       'method': 'POST',
       'body': formData
      };
