@@ -40,8 +40,8 @@ async function registerUser (userData) {
 
       try {
         const imgRequest = {
-          method: 'POST',
-          body: imgFormData
+          'method': 'POST',
+          'body': imgFormData
         }
 
         const response = await fetch( process.env.REACT_APP_IMG_API_URL, imgRequest );
@@ -67,11 +67,11 @@ async function registerUser (userData) {
   try {
 
     const request = {
-      // 'headers': {
-      //   'Content-Type': 'application/json'
-      // },
-      method: 'POST',
-      body: formData
+      'headers': {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      'method': 'POST',
+      'body': formData
      };
 console.log('request', request);
 console.log('linea 73')     
