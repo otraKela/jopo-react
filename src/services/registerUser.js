@@ -70,6 +70,7 @@ console.log('email', formData.get('email'))
     const request = {
       'headers': {
         // 'Content-Type': 'multipart/form-data; boundary=----------01031960'
+        'Origin': 'https://jopo-react.netlify.app/'
       },
       'method': 'POST',
       'body': formData
