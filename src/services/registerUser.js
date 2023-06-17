@@ -16,7 +16,7 @@ async function registerUser (userData) {
   // stored
   if (!userData.img ) {
     userImg = null;
-
+console.log('userData.img = null, userImg = ', userImg)
   } else {
     // In a development environment user images will be stored in a local folder
     // The image is appended to formData to be uploaded by multer
@@ -24,7 +24,7 @@ async function registerUser (userData) {
     if (process.env.NODE_ENV === 'development') {
       userImg = process.env.REACT_APP_IMG_LOCAL_FOLDER  + userData.img.name;
       formData.append ('image', userData.img);
-
+console.log('userData.img != null y dev, userImg = ', userImg)
     } else {
 
       // In a production environment user images will be stored in an image server. 
@@ -53,6 +53,7 @@ async function registerUser (userData) {
         } else {
           userImg = null;
         }
+console.log('userData.img != null y prod, userImg = ', userImg)
       }
       catch (error) {
         return error;
@@ -62,14 +63,15 @@ async function registerUser (userData) {
 
     // Complete the user data
   formData.append ('img', userImg);  // user image url
-
+console.log('formData.img', formData.get('img'))
   // Completing the registration process by adding the user to the DB
   try {
 console.log('email', formData.get('email'))
     const request = {
-      // 'headers': {
-      //   'Content-Type': 'multipart/form-data; boundary=----------01031960'
-      // },
+      'headers': {
+        // 'Content-Type': 'multipart/form-data; boundary=----------01031960'
+        'Origin': 'https://jopo-react.netlify.app/'
+      },
       'method': 'POST',
       'body': formData
      };
