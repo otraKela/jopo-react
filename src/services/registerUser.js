@@ -94,15 +94,15 @@ console.log('dev result', result)
           return error;
         }
       }
-      
+
 console.log('prod, userImg = ', userImg)
       let data = {
         'firstName': userData.firstName,
-        'lastName': userData.lastName,
+        'lastName': userData.lastName || null,
         'email': userData.email,
-        'phone': userData.phone,
+        'phone': userData.phone || null,
         'password': userData.password,
-        'date_birth': userData.date_birth,  
+        'date_birth': userData.date_birth || null,  
         'img': userImg
       }
 console.log ('data', data)    
