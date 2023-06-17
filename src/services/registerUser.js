@@ -62,36 +62,40 @@ console.log('dev result', result)
 
     if (process.env.NODE_ENV !== 'development') {
 
-      const dateNow = Date.now();
-      const imgName = dateNow + '_' + userData.img.name;
+      if (!userData.img ) {
+        userImg = null;
+      } else {
+        const dateNow = Date.now();
+        const imgName = dateNow + '_' + userData.img.name;
 
-      const imgFormData = new FormData();
+        const imgFormData = new FormData();
 
-      imgFormData.append('key', IMG_API_KEY);
-      imgFormData.append('name', imgName);
-      imgFormData.append('image', userData.img);
+        imgFormData.append('key', IMG_API_KEY);
+        imgFormData.append('name', imgName);
+        imgFormData.append('image', userData.img);
 
-      try {
-        const imgRequest = {
-          'method': 'POST',
-          'body': imgFormData
+        try {
+          const imgRequest = {
+            'method': 'POST',
+            'body': imgFormData
+          }
+
+          const response = await fetch( process.env.REACT_APP_IMG_API_URL, imgRequest );
+          
+          const result = await response.json();
+    
+          if ( result.status && result.status === 200 ) {
+            userImg = result.data.thumb.url;
+          } else {
+            userImg = null;
+          }
         }
-
-        const response = await fetch( process.env.REACT_APP_IMG_API_URL, imgRequest );
-        
-        const result = await response.json();
-   
-        if ( result.status && result.status === 200 ) {
-          userImg = result.data.thumb.url;
-        } else {
-          userImg = null;
+        catch (error) {
+          return error;
         }
+      }
+      
 console.log('prod, userImg = ', userImg)
-      }
-      catch (error) {
-        return error;
-      }
-
       let data = {
         'firstName': userData.firstName,
         'lastName': userData.lastName,
